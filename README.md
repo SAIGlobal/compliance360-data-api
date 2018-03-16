@@ -1,4 +1,4 @@
-# Compliance 360 Security API
+# Compliance 360 Data API
 * [Introduction](#introduction)
 * [API Documentation](#api-documentation)
 * [Implementations](#implementations)
