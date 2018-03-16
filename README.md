@@ -7,9 +7,9 @@
 * [Maintainers](#maintainers)
 
 # Introduction
-The Compliance 360 application is the leading Goverance Risk and Compliance (GRC) platform. The Compliance 360 system is a highly configurable application framework underppined by a metadata driven architecture. 
+The Compliance 360 application is the leading Goverance Risk and Compliance (GRC) platform. The Compliance 360 system is a highly-configurable application framework underpinned by a metadata-driven architecture. 
 
-The Data API provides developers with the ability Create, Update, Delete business objects within the Compliance 360 system. It also provides the ability to execute component operations, like the ability to checkout a policy or advance a workflow. In addition to the core data API features, this API also provides the ability to upload and download binary documents, like file attachments as well as retreive the audit trail history of a component.
+The Data API provides developers with the ability to Create, Update, and Delete business objects within the Compliance 360 system. It also provides the ability to execute component operations, like the ability to checkout a policy or advance a workflow. In addition to the core data API features, this API also provides the ability to upload and download binary documents, like file attachments as well as retreive the audit trail history of a component.
 
 # API Documentation
 Our APIs are documented in the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md) format. Read the documentation [here](https://app.swaggerhub.com/api/saiglobal/compliance360-data/2.0.0).
