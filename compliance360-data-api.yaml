@@ -1,0 +1,577 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+  #- description: SwaggerHub API Auto Mocking
+  #  url: https://virtserver.swaggerhub.com/saiglobal/compliance360-data/2.0.0
+  - description: Production Compliance 360
+    url: https://secure.compliance360.com
+info:
+  description: |
+    Overview
+    ======
+    The Compliance 360 Data API is used to create, update, delete and find business objects within the Compliance 360 application. The API also provides the ability to execute object specific operations, like checking out a Policy object.
+    The Metadata API describes the structure of the components that are defined within the Compliance 360 application modules.
+  version: "2.0.0"
+  title: Compliance 360 Data API
+  contact:
+    email: support@saiglobal.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+#  - name: developers
+#    description: Operations available to regular developers
+paths:
+  /API/2.0/Data/{moduleName}/{componentName}/{typeName}:
+    post:
+      tags:
+        - Data
+      summary: Creates a new instance of a Component
+      operationId: create
+      description: |
+        # Summary
+        Creates a new instance of a Compliance 360 component that belongs to a specified module and type.
+
+        # Notes
+        Types marked as IsReadOnly=true in the Metadata API cannot be created.
+      parameters:
+        - in: path
+          name: moduleName
+          description: The name of the module that contains the component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: componentName
+          description: The name of the component to create
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: typeName
+          description: The name of the type of component to create
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: token
+          description: The current session token obtained using the security API.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: 
+                type: string
+              example:
+                propertyName1: "sample_value_1"
+                propertyName2: "sample_value_2"
+                propertyName3: "sample_value_3"
+                referencePropertySingle: 
+                  id: "EmployeeManagement/EmployeeDivision/Default:1"
+                referencePropertyMulti: 
+                  - id: "EmployeeManagement/Employee/Default:1"
+                    action: "Add"
+                  - id: "EmployeeManagement/Employee/Default:2"
+                    action: "Add"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code: 
+                        type: string
+                        description: The HTTP status code
+                      message:
+                        type: string
+                        description: The constant value \"OK\" or an error message if HTTP Status code indicates a non-success status.
+                  id:
+                    type: string
+                    description: The id of the newly created component.
+                example:
+                  status:
+                    code: 200
+                    message: OK
+                  id: 'EmployeeManagement/Employee/Default:1154'
+    get:
+      tags:
+        - Data
+      summary: Finds the component instances for the given module, component and type
+      operationId: find
+      description: |
+        # Summary
+        This endpoint is used to retrieve an instance of one or more components using the query language supported by the system. Please see the query syn
+      parameters:
+        - in: path
+          name: moduleName
+          description: The name of the module that contains the component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: componentName
+          description: The name of the component to create
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: typeName
+          description: The name of the type of component to create
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          description: The id of the component to update
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: token
+          description: The current session token obtained using the security API.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: 
+                type: string
+              example:
+                propertyName1: "sample_value_1"
+                propertyName2: "sample_value_2"
+                propertyName3: "sample_value_3"
+                referencePropertySingle: 
+                  id: "EmployeeManagement/EmployeeDivision/Default:1"
+                referencePropertyMulti: 
+                  - id: "EmployeeManagement/Employee/Default:1"
+                    action: "Add"
+                  - id: "EmployeeManagement/Employee/Default:2"
+                    action: "Add"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code: 
+                        type: string
+                        description: The HTTP status code
+                      message:
+                        type: string
+                        description: The constant value \"OK\" or an error message if HTTP Status code indicates a non-success status.
+                  id:
+                    type: string
+                    description: The id of the updated component.
+                example:
+                  status:
+                    code: 200
+                    message: OK
+                  id: 'EmployeeManagement/Employee/Default:1154'
+         
+  /API/2.0/Data/{moduleName}/{componentName}/{typeName}/{id}:
+    post:
+      tags:
+        - Data
+      summary: Updates an existing module component.
+      operationId: update
+      description: |
+        # Summary
+        Updates an existing module component identified by the supplied id, belonging to the supplied module, component and type. Please note that the {id} value is numeric and is NOT the complete id token value.
+        <br><br>
+        The update process works more like a PATCH operation in which only the supplied fields are updated on the server. For example, supplying updates for two (2) out of ten (10) fields on a component will only update the two (2) supplied fields. The remaining eight (8) will not be affected.
+
+        # Notes
+        Fields marked as IsReadOnly=true in the Metadata API cannot be updated.
+      parameters:
+        - in: path
+          name: moduleName
+          description: The name of the module that contains the component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: componentName
+          description: The name of the component to update
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: typeName
+          description: The name of the type of component to update
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          description: The id of the component to update
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: token
+          description: The current session token obtained using the security API.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: 
+                type: string
+              example:
+                propertyName1: "sample_value_1"
+                propertyName2: "sample_value_2"
+                propertyName3: "sample_value_3"
+                referencePropertySingle: 
+                  id: "EmployeeManagement/EmployeeDivision/Default:1"
+                referencePropertyMulti: 
+                  - id: "EmployeeManagement/Employee/Default:1"
+                    action: "Add"
+                  - id: "EmployeeManagement/Employee/Default:2"
+                    action: "Add"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code: 
+                        type: string
+                        description: The HTTP status code
+                      message:
+                        type: string
+                        description: The constant value \"OK\" or an error message if HTTP Status code indicates a non-success status.
+                  id:
+                    type: string
+                    description: The id of the updated component.
+                example:
+                  status:
+                    code: 200
+                    message: OK
+                  id: 'EmployeeManagement/Employee/Default:1154'
+  /API/2.0/Data/{moduleName}/{componentName}/{typeName}/{id}/{operation}:
+    post:
+      tags:
+        - Data
+      summary: Executes an operation on the specified Component
+      operationId: execute
+      description: |
+        # Summary
+        Executes an operation on the specified component. Please note that the {id} value is numeric and is NOT the complete id token value.
+        <br><br>
+        Operations are used to execute business object behavior. Operations are specific to each component. You may use the Metadata API to obtain a list of operations for a specific component.
+
+        # Notes
+        Fields marked as IsReadOnly=true in the Metadata API cannot be updated.
+      parameters:
+        - in: path
+          name: moduleName
+          description: The name of the module that contains the component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: componentName
+          description: The name of the component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: typeName
+          description: The name of the type of component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          description: The id of the component that contains the operation.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: operation
+          description: The name of operation to execute.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: token
+          description: The current session token obtained using the security API.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: 
+                type: string
+              example:
+                propertyName1: "sample_value_1"
+                propertyName2: "sample_value_2"
+                propertyName3: "sample_value_3"
+                referencePropertySingle: 
+                  id: "EmployeeManagement/EmployeeDivision/Default:1"
+                referencePropertyMulti: 
+                  - id: "EmployeeManagement/Employee/Default:1"
+                    action: "Add"
+                  - id: "EmployeeManagement/Employee/Default:2"
+                    action: "Add"
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Operation cannot be found
+  /API/2.0/Raw/{moduleName}/{componentName}/{typeName}/{id}/{field}:
+    get:
+      tags:
+        - Access to Uploaded Files
+      summary: Retrieve the binary file contents for the given field on a specific component.
+      operationId: getStream
+      description: |
+        # Summary
+        Retrieve the binary file contents for the given field on a specific component.
+
+        # Notes
+        To retrieve the file contents as a PDF, include the "Accept" header with a value of "application/pdf".
+      parameters:
+        - in: path
+          name: moduleName
+          description: The name of the module that contains the component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: componentName
+          description: The name of the component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: typeName
+          description: The name of the type of component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          description: The id of the component that contains the file type field.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: field
+          description: The name of file data type field.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: token
+          description: The current session token obtained using the security API.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: File found and returned.
+          content:
+            application/octet-stream:
+              schema:
+                description: The binary data of the uploaded file.
+                type: string
+                format: binary
+            application/pdf:
+              schema:
+                description: The PDF transformed version of the uploaded file.
+                type: string
+                format: binary
+        '404':
+          description: Field cannot be found
+  /API/2.0/History/{moduleName}/{componentName}/{typeName}/{id}/{field}:
+    post:
+      tags:
+        - Access to Uploaded Files
+      summary: Uploads a new version of a binary file.
+      operationId: setStream
+      description: |
+        # Summary
+        Uploads a new binary file version for the given field on a specific component.
+
+        # Sample Request
+        ```
+        POST /API/2.0/Raw/Documents/MetaDocument/Default/30/FileContent?token=/wEFKnpvbmRhfDY1YzJiNTFhLTFhYTMtNGYzZC05YjFhLWY0Njk0NmI2YWU5YQ== HTTP/1.1
+        Content-Type: image/jpeg
+        Content-Disposition: attachment; filename=example.jpg
+        Content-Length: 13598
+        <...binary data...>
+        ```
+      parameters:
+        - in: header
+          name: Content-Type
+          description: The mime-type of the file being uploaded.
+          required: true
+          schema:
+            type: string
+            example: application/msword
+        - in: header
+          name: Content-Disposition
+          description: Should indicate a file attachment and the file name. ```attachment; filename=sample_file.docx```
+          required: true
+          schema:
+            type: string
+            example: application/msword
+        - in: path
+          name: moduleName
+          description: The name of the module that contains the component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: componentName
+          description: The name of the component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: typeName
+          description: The name of the type of component.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          description: The id of the component that contains the file type field.
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: field
+          description: The name of file data type field.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: token
+          description: The current session token obtained using the security API.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200': 
+          description: OK
+        '404':
+          description: Field cannot be found
+  /API/2.0/History/History/EntityAudit/Default:
+    get:
+      tags:
+        - Access to Component History
+      summary: Returns the history of a component including audit events for all create, update, delete and other system events.
+      operationId: getHistory
+      description: |
+        # Summary
+        Returns the history of a component including audit events for all create, update, delete and other system events.
+      parameters:
+        - in: query
+          name: for
+          description: The id of the component for which to return history.
+          required: true
+          schema:
+            type: number
+            example: 1
+        - in: query
+          name: select
+          description: Comma separated list of fields to return.
+          schema:
+            type: string
+            example: FirstName,LastName
+        - in: query
+          name: where
+          description: The criteria used to filter the component results. See [Filter Syntax](https://github.com/SAIGlobal/compliance360-data-api/SYNTAX_REFERENCE.md#filter) for more information.
+          schema:
+            type: string
+            example: Message~'Name'
+        - in: query
+          name: order
+          description: The description of any sort operations to be applied to the results. See [Order Syntax](https://github.com/SAIGlobal/compliance360-data-api/SYNTAX_REFERENCE.md#order) for more information.
+          schema:
+            type: string
+            example: +FirstName,-HireDate
+        - in: query
+          name: skip
+          description: The number of results to skip.
+          schema:
+            type: number
+            example: 0
+        - in: query
+          name: take
+          description: The number of results to return.
+          schema:
+            type: number
+            example: 10
+        - in: query
+          name: token
+          description: The current session token obtained using the security API.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      status:
+                        type: number
+                        description: HTTP status code
+                        example: 200
+                      message:
+                        type: string
+                        description: The constant value \"OK\" or error message is HTTP status code indicates a failure.
+                        example: OK
+                      data: 
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "History/EntityAudit/Default:1656639"
+                          additionalProperties:
+                            type: string
+                          
+                            
