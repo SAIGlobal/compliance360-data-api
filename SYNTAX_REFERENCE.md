@@ -6,6 +6,7 @@ All objects in the Compliance 360 system are identified by scoped tokens. The to
 
 ### Format
 <strong>{SCOPE}:{ID}</strong>
+
 | Item  | Description                                                  |
 |------ | -----------                                                  |
 | SCOPE | The scope is a uri string that uniquely identifies the item. |

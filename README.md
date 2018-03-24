@@ -7,7 +7,7 @@
 * [Maintainers](#maintainers)
 
 # Introduction
-The Compliance 360 application is the leading Goverance Risk and Compliance (GRC) platform. The Compliance 360 system is a highly-configurable application framework underpinned by a metadata-driven architecture. 
+The Compliance 360 application is the leading Governance Risk and Compliance (GRC) platform. The Compliance 360 system is a highly-configurable application framework underpinned by a metadata-driven architecture. 
 
 The Data API provides developers with the ability to Create, Update, and Delete business objects within the Compliance 360 system. It also provides the ability to execute component operations, like the ability to checkout a policy or advance a workflow. In addition to the core data API features, this API also provides the ability to upload and download binary documents, like file attachments as well as retreive the audit trail history of a component.
 
@@ -24,7 +24,7 @@ Here are links to several applications that leverage the Compliance 360 Metadata
 * [Hotline Case Import](#)
 
 # How To Contribute
-Contribute by submitting a PR and a bug repprt in GitHub.
+Contribute by submitting a PR and a bug report in GitHub.
 
 # Maintainers
 * [Thomas Lee](https://github.com/thethomaslee) - [@thethomaslee](https://twitter.com/thethomaslee)
