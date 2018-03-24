@@ -64,12 +64,12 @@ Criteria statements can be combined with AND/OR logic and can be grouped with pa
 
 | Operator      | Description                   |
 |------         | -----------                   |
-| &             | AND Operator.                 |
-| ;             | Alternate AND Operator.       |
-| \|            | OR Operator.                  |
+| &             | AND operator.                 |
+| ;             | Alternate AND operator.       |
+| \|            | OR operator.                  |
 
 ### String Criteria
-Please note that all string values must be quoted with single or double quotes. Both of the examples below are valid strings type criteria statements.
+Please note that all string criteria values must be quoted with single or double quotes. Both of the examples below are valid string type criteria statements.
 ```
 Example 1:
 FirstName="John"

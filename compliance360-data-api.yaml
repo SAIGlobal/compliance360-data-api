@@ -7,10 +7,13 @@ servers:
     url: https://secure.compliance360.com
 info:
   description: |
-    Overview
-    ======
+    # Overview
     The Compliance 360 Data API is used to create, update, delete and find business objects within the Compliance 360 application. The API also provides the ability to execute object specific operations, like checking out a Policy object.
     The Metadata API describes the structure of the components that are defined within the Compliance 360 application modules.
+    
+    # API Syntax Reference
+    The Compliance 360 API supports a robust query and filtering syntax that can be used with GET endpoints that are designed to return information. Please see the [Compliance 360 API Syntax Reference](https://github.com/SAIGlobal/compliance360-data-api/blob/master/SYNTAX_REFERENCE.md#compliance-360-api-syntax-reference) for more information on how to filter, sort and select fields during query operations.
+    
   version: "2.0.0"
   title: Compliance 360 Data API
   contact:
@@ -516,13 +519,13 @@ paths:
             example: FirstName,LastName
         - in: query
           name: where
-          description: The criteria used to filter the component results. See [Filter Syntax](https://github.com/SAIGlobal/compliance360-data-api/SYNTAX_REFERENCE.md#filter) for more information.
+          description: The criteria used to filter the component results. See [Compliance 360 API Syntax Reference](https://github.com/SAIGlobal/compliance360-data-api/blob/master/SYNTAX_REFERENCE.md#compliance-360-api-syntax-reference) for more information.
           schema:
             type: string
             example: Message~'Name'
         - in: query
           name: order
-          description: The description of any sort operations to be applied to the results. See [Order Syntax](https://github.com/SAIGlobal/compliance360-data-api/SYNTAX_REFERENCE.md#order) for more information.
+          description: The description of any sort operations to be applied to the results. See [Compliance 360 API Syntax Reference](https://github.com/SAIGlobal/compliance360-data-api/blob/master/SYNTAX_REFERENCE.md#compliance-360-api-syntax-reference) for more information.
           schema:
             type: string
             example: +FirstName,-HireDate
