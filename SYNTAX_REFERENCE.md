@@ -45,6 +45,7 @@ FirstName=John
 ```
 
 ### Criteria Operators
+
 | Operator      | Description                   |
 |------         | -----------                   |
 | =             | Equals.                       |
@@ -60,6 +61,7 @@ FirstName=John
 
 ### And / Or and Grouping
 Criteria statements can be combined with AND/OR logic and can be grouped with parentheses "( )"
+
 | Operator      | Description                   |
 |------         | -----------                   |
 | &             | AND Operator.                 |
