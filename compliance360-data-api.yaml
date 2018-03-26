@@ -21,8 +21,6 @@ info:
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
-#  - name: developers
-#    description: Operations available to regular developers
 paths:
   /API/2.0/Data/{moduleName}/{componentName}/{typeName}:
     post:
@@ -111,7 +109,11 @@ paths:
       operationId: find
       description: |
         # Summary
-        This endpoint is used to retrieve an instance of one or more components using the query language supported by the system. Please see the query syn
+        This endpoint is used to retrieve an instance of one or more components using the query language supported by the system.
+        
+        # API Syntax Reference
+        The Compliance 360 APIs support a robust query and filtering syntax that can be used with GET endpoints 
+        that are designed to return information. Please see the [Compliance 360 API Syntax Reference](https://github.com/SAIGlobal/compliance360-data-api/blob/master/SYNTAX_REFERENCE.md#compliance-360-api-syntax-reference) for more information on how to filter, sort and select
       parameters:
         - in: path
           name: moduleName
@@ -131,10 +133,34 @@ paths:
           required: true
           schema:
             type: string
-        - in: path
-          name: id
-          description: The id of the component to update
-          required: true
+        - in: query
+          name: skip
+          description: The number of records to skip before returning results.
+          required: false
+          schema:
+            type: number
+        - in: query
+          name: take
+          description: The number of records to return in the result set.
+          required: false
+          schema:
+            type: number
+        - in: query
+          name: select
+          description: A comma separated list of fields to return. See API Syntax Reference for details.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: where
+          description: The filter criteria to be applied to the query operation. See API Syntax Reference for details.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: A comma separated list of sort expressions. See API Syntax Reference for details.
+          required: false
           schema:
             type: string
         - in: query
@@ -143,24 +169,7 @@ paths:
           required: true
           schema:
             type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              additionalProperties: 
-                type: string
-              example:
-                propertyName1: "sample_value_1"
-                propertyName2: "sample_value_2"
-                propertyName3: "sample_value_3"
-                referencePropertySingle: 
-                  id: "EmployeeManagement/EmployeeDivision/Default:1"
-                referencePropertyMulti: 
-                  - id: "EmployeeManagement/Employee/Default:1"
-                    action: "Add"
-                  - id: "EmployeeManagement/Employee/Default:2"
-                    action: "Add"
+            
       responses:
         '200':
           description: OK
@@ -178,15 +187,29 @@ paths:
                       message:
                         type: string
                         description: The constant value \"OK\" or an error message if HTTP Status code indicates a non-success status.
-                  id:
-                    type: string
-                    description: The id of the updated component.
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: 
+                          type: string
+                        additionalProperties: {}
                 example:
                   status:
                     code: 200
                     message: OK
-                  id: 'EmployeeManagement/Employee/Default:1154'
-         
+                  data:
+                    - id: "EmployeeManagement/Employee/Default:1154"
+                      propertyName1: "sample_value_1"
+                      propertyName2: "sample_value_2"
+                      propertyName3: "sample_value_3"
+                      referencePropertySingle: 
+                        id: "EmployeeManagement/EmployeeDivision/Default:1"
+                      referencePropertyMulti: 
+                        - id: "EmployeeManagement/Employee/Default:1"
+                        - id: "EmployeeManagement/Employee/Default:2"
+                  
   /API/2.0/Data/{moduleName}/{componentName}/{typeName}/{id}:
     post:
       tags:
@@ -576,5 +599,3 @@ paths:
                               example: "History/EntityAudit/Default:1656639"
                           additionalProperties:
                             type: string
-                          
-                            
