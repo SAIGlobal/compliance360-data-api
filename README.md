@@ -3,6 +3,7 @@
 * [API Documentation](#api-documentation)
 * [Implementations](#implementations)
 * [Tools](#tools)
+* [Request Support](#request-support)
 * [How To Contribute](#how-to-contribute)
 * [Maintainers](#maintainers)
 
@@ -25,6 +26,14 @@ Below are implementations of the Data API in languages we use. Don't see your fa
 Here are links to several applications that leverage the Compliance 360 Metadata, Data, and Security APIs.
 * [Active Directory User Sync](https://github.com/SAIGlobal/compliance360-activedirectory-sync)
 * [Incident Import Starter App](https://github.com/SAIGlobal/compliance360-incidents-importstarter)
+
+# Request Support
+If you are having a problem with a specific call returning unexpected results, contact SAI30 Support by sending an email to support@sai360.com.
+You must provide the following information for your question to be researhced;
+* The specific call and arguments being made, redacted of any confidential customer information, such as passwords, and for PHI/PII data.
+* What results are being returned.
+* What results you expected to be returned.
+Please note that without this information, your question cannot be addressed by our technical staff.
 
 # How To Contribute
 Contribute by submitting a PR and a bug report in GitHub.
