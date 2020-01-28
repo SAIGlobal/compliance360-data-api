@@ -17,7 +17,7 @@ info:
   version: "2.0.0"
   title: Compliance 360 Data API
   contact:
-    email: support@saiglobal.com
+    email: support@sai360.com
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
